@@ -20,3 +20,5 @@ rl.on("line", function (line) {
 import * as fs from "fs";
 const inputList = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 // 입력받는 문자열 자체를 개행 기준으로 split해서 input에 저장
+// fs 모듈 오류 발생시 밑에처럼 수정해보기
+// file path: process.platform === 'linux' ? '/dev/stdin' : 'input.txt';
