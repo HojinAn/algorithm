@@ -6,11 +6,11 @@ function solution(X, Y) {
     const ans = [];
     for (const [s, val] of counterX) {
         const cnt = Math.min(val, (counterY.get(s) ?? 0));
-		cnt && ans.push([s, cnt]);
+		cnt && ans.push(s.repeat(cnt));
     }
     
-    ans.sort(([a], [b]) => a > b ? -1 : a < b ? 1 : 0);
-    let str = ans.map(([s, cnt]) => s.repeat(cnt)).join('');
+    ans.sort().reverse();
+    let str = ans.join('');
     if (str[0] === '0') str = '0';
     return ans.length ? str : '-1';
 }
