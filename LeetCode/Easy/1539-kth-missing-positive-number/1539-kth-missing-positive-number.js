@@ -4,7 +4,6 @@
  * @return {number}
  */
 function findKthPositive (arr, k) {
-    const n = arr.length;
     const existSet = new Set(arr);
     const ans = [];
     let no = 1;
