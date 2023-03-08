@@ -7,8 +7,8 @@
 function minEatingSpeed(piles, h) {
     piles.sort((a, b) => a - b);
     
-    let l = 0;
-    let r = Math.max(...piles) + 1;
+    let l = 1;
+    let r = piles[piles.length - 1];
     while (l < r) {
         const mid = Math.floor((l + r) / 2);
         const cnt = piles.reduce((cnt, pile) => cnt + Math.ceil(pile / mid), 0);
