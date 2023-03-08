@@ -12,8 +12,8 @@ var ParkingSystem = function(big, medium, small) {
  * @return {boolean}
  */
 ParkingSystem.prototype.addCar = function(carType) {
-    if (this.spaces[--carType] > 0) {
-        this.spaces[carType]--;
+    if (this.spaces[carType - 1] > 0) {
+        this.spaces[carType - 1]--;
         return true;
     }
     return false;
