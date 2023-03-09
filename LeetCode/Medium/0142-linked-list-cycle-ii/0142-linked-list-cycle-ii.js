@@ -11,12 +11,19 @@
  * @return {ListNode}
  */
 function detectCycle(head) {
-    let pointer = head;
-    const visited = new Set();
-    while (pointer) {
-        if (visited.has(pointer)) return pointer;
-        visited.add(pointer);
-        pointer = pointer.next;
+    let slow = head;
+    let fast = head;
+    while (slow && fast?.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow === fast) {
+            slow = head;
+            while (slow !== fast) {
+                slow = slow.next;
+                fast = fast.next;
+            }
+            return slow;
+        }
     }
-    return pointer;
+    return null;
 };
