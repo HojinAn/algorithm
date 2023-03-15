@@ -13,11 +13,6 @@
  */
 function isSameTree(p, q) {
     if (!p && !q) return true;
-    if (!p || !q) return false;
-    if (p.val !== q.val) return false;
-    if (!p.left && !q.left && !p.right && !q.right) return true;
-    if (p.left && q.left && !p.right && !q.right) return isSameTree(p.left, q.left);
-    if (!p.left && !q.left && p.right && q.right) return isSameTree(p.right, q.right);
-    if (p.left && q.left && p.right && q.right) return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
-    return false;
+    if (!p || !q || p.val !== q.val) return false;
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 };
