@@ -62,6 +62,9 @@ if (len > 2) {
   }
 } else if (len === 2) {
   countOdd2(nums.reduce(sum), initCnt);
-} else min = max;
+} else {
+  max = initCnt;
+  min = max;
+}
 
 console.log(`${min} ${max}`);
