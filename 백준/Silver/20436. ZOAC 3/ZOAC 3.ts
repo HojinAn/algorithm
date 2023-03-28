@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 const [S, inp] = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
-const cur = S.trim().split(' ');
+let pos = S.trim().split(' ');
 const n = inp.length;
 let time = 0;
 
@@ -59,20 +59,16 @@ const isRight = (s: string) => {
   }
 };
 
-const click = (s: string) => {
-  if (isRight(s)) {
-    time += calcTime(cur[1], s);
-    cur[1] = s;
-  } else {
-    time += calcTime(cur[0], s);
-    cur[0] = s;
-  }
-  time++;
+const click = (s: string, pos: string[], time: number): [number, string[]] => {
+  const idx = isRight(s) ? 1 : 0;
+  time += calcTime(pos[idx], s) + 1;
+  pos[idx] = s;
+  return [time, pos];
 };
 
 for (let i = 0; i < n; i++) {
   const target = inp[i];
-  click(target);
+  [time, pos] = click(target, pos, time);
 }
 
 console.log(time);
