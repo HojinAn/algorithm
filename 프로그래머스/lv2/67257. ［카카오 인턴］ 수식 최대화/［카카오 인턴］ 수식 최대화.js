@@ -40,7 +40,7 @@ function solution(expression) {
 	
     const combi = (d, order, visited) => {
         if (d === 3) {
-			max = Math.max(max, Math.abs(order.map(x=>OP[x]).reduce(doCalc, expressionArr)[0]));
+            max = Math.max(max, Math.abs(order.map(x=>OP[x]).reduce(doCalc, expressionArr)[0]));
             return;
         }
         for (let i = 0; i < 3; i++) if (!(visited & 1 << i)) combi(d + 1, [...order, i], visited | 1 << i);
