@@ -27,27 +27,17 @@ function solution(str: string, k: number) {
   const getMinMax = getMinMaxByWindowSize(k - 1);
 
   return candidates
-    .reduce(
-      ([min, max], idxArr) => {
-        const [nMin, nMax] = getMinMax(idxArr);
-        min = Math.min(min, nMin);
-        max = Math.max(max, nMax);
-        return [min, max];
-      },
-      [100000, -1]
-    )
+    .reduce(getMinMax, [100000, -1])
     .join(' ');
 }
 
 function getMinMaxByWindowSize(windowSize: number) {
-  return function (idxArr: number[]) {
+  return function ([min, max]: number[], idxArr: number[]) {
     const len = idxArr.length;
-    const init = idxArr[windowSize] - idxArr[0];
-    let [min, max] = [init, init];
-    for (let i = 1; i < len - windowSize; i++) {
-      min = Math.min(min, idxArr[i + windowSize] - idxArr[i]);
-      max = Math.max(max, idxArr[i + windowSize] - idxArr[i]);
+    for (let i = 0; i < len - windowSize; i++) {
+      min = Math.min(min, idxArr[i + windowSize] - idxArr[i] + 1);
+      max = Math.max(max, idxArr[i + windowSize] - idxArr[i] + 1);
     }
-    return [min + 1, max + 1];
+    return [min, max];
   };
 }
