@@ -54,11 +54,8 @@ function solution(park, routes) {
     
     const operateRoute = (coords, routes) => {
         const [nr, nc] = getNextCoords(coords, routes);
-        if (isInRange([nr, nc])) {
-            if (isBlocked(coords, routes)) return coords;
-            return [nr, nc];
-        }
-        return coords;
+        if (!isInRange([nr, nc]) || isBlocked(coords, routes)) return coords;
+        return [nr, nc];
     }
     
     return routes.reduce(operateRoute, findStartCoords());
