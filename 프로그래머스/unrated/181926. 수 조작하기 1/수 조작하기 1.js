@@ -1,16 +1,10 @@
+const operator = {
+    "w": (n) => n + 1,
+    "s": (n) => n - 1,
+    "d": (n) => n + 10,
+    "a": (n) => n - 10,
+};
+
 function solution(n, control) {
-    return control.split("").reduce((num, d) => {
-        switch (d) {
-            case "w":
-                return num + 1;
-            case "s":
-                return num - 1;
-            case "d":
-                return num + 10;
-            case "a":
-                return num - 10;
-            default:
-                return num;
-        }
-    }, n);
+    return control.split("").reduce((num, d) => operator[d](num), n);
 }
