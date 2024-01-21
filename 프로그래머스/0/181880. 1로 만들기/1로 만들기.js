@@ -1,12 +1,12 @@
-function countDivision(no, cnt) {
+function countDivision(cnt, no) {
     if (no === 1) {
         return cnt;
     }
     if (no % 2) {
-        return countDivision(no - 1, cnt);
+        return countDivision(cnt, no - 1);
     }
-    return countDivision(no / 2, cnt + 1);
+    return countDivision(cnt + 1, no / 2);
 }
 function solution(num_list) {
-    return num_list.reduce((cnt, no) => countDivision(no, cnt), 0);
+    return num_list.reduce(countDivision, 0);
 }
