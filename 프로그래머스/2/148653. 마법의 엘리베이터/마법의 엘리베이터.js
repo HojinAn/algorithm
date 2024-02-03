@@ -1,20 +1,8 @@
 function solution(storey) {
-    let ans = 0;
-    while (storey > 0) {
-        const remain = storey % 10;
-        storey = Math.floor(storey / 10);
-        if (remain > 5) {
-            ans += 10 - remain;
-            storey += 1;
-        } else if (remain < 5) {
-            ans += remain;
-        } else {
-            const tensDigit = storey % 10;
-            if (tensDigit >= 5) {
-                storey += 1;
-            }
-            ans += remain;
-        }
+    if (storey < 5) {
+        return storey;
     }
-    return ans;
+    const remain = storey % 10;
+    const share = Math.floor(storey / 10);
+    return Math.min(remain + solution(share), 10 - remain + solution(share + 1));
 }
