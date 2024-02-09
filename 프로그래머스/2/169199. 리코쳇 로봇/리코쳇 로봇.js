@@ -70,27 +70,20 @@ function solution(board) {
     }))
     
     while (!q.isEmpty()) {
-        const [ir, ic, d, cnt] = q.poll();
-        if (board[ir][ic] === GOAL) {
+        let [r, c, d, cnt] = q.poll();
+        if (board[r][c] === GOAL) {
             return cnt;
         }
-        let [r, c] = [ir, ic];
         const [dr, dc] = DIR[d];
         while (true) {
             const [nr, nc] = [r + dr, c + dc];
-            if (!checkIsInRange([nr, nc]) || board[nr][nc] === WALL) {
+            if (!checkIsInRange([nr, nc]) || board[nr][nc] === WALL || visited[nr][nc][d]) {
                 break;
             }
             [r, c] = [nr, nc];
         }
-        if (r === ir && c === ic) {
-            continue;
-        }
         Object.keys(DIR).forEach((nd) => {
-            if (nd === d || visited[r][c][nd]) {
-                return;
-            }
-            q.push([r, c, nd, cnt + 1]);
+            q.push([r, c, nd, 0]);
             visited[r][c][nd] = true;
         });
     }
